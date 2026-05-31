@@ -55,6 +55,17 @@
       transform: scale(1.05);
     }
 
+    .bigYes {
+      font-size: 26px;
+      padding: 18px 40px;
+      background: #ff0066;
+    }
+
+    .moveBtn {
+      background: #999;
+      position: relative;
+    }
+
     img {
       width: 260px;
       max-width: 90%;
@@ -87,10 +98,11 @@
     <div class="card">
       <h1>🤔 Quick Question</h1>
       <p>Who is the cutest?</p>
-      <button onclick="nextPage(3)">Me</button>
-      <button onclick="nextPage(3)">Definitely me</button>
-      <button onclick="nextPage(3)">Obviously me</button>
-      <p class="small">There is no wrong answer here 😂</p>
+      <button onclick="nextPage(3)">Udday obviously</button>
+      <button onclick="nextPage(3)">Udday definitely</button>
+      <button onclick="nextPage(3)">Udday</button>
+      <button class="moveBtn" onmouseover="moveButton(this)" onclick="moveButton(this)">Sofia</button>
+      <p class="small">Choose carefully 😂</p>
     </div>
   </div>
 
@@ -98,47 +110,58 @@
     <div class="card">
       <h1>⏳ Running analysis...</h1>
       <p>Checking if we should go on a date...</p>
+      <p>Also checking if you are smart...</p>
       <h2>██████████ 100%</h2>
-      <p>Result: ✅ Yes</p>
+      <p>Result: ✅ Yes, you are smart</p>
       <button onclick="nextPage(4)">Continue</button>
     </div>
   </div>
 
   <div class="page" id="page4">
     <div class="card">
+      <h1>Would you like to go on a date with me? ❤️</h1>
+      <button onclick="nextPage(5)">yes</button>
+      <button class="bigYes" onclick="nextPage(5)">YES ❤️</button>
+      <button class="moveBtn" onmouseover="moveButton(this)" onclick="moveButton(this)">No</button>
+    </div>
+  </div>
+
+  <div class="page" id="page5">
+    <div class="card">
       <h1>📊 Official Research Results</h1>
       <p>Reasons you should go on a date with me:</p>
       <p>I'm funny, sometimes</p>
       <p>I know how to drive</p>
       <p>I buy food</p>
+      <p>You don't have another option 😡</p>
       <p>You're already stuck with me anyway</p>
-      <button onclick="nextPage(5)">Accept Facts</button>
+      <button onclick="nextPage(6)">Accept Facts</button>
     </div>
   </div>
 
-  <div class="page" id="page5">
+  <div class="page" id="page6">
     <div class="card">
       <h1>📸 Exhibit A</h1>
       <p>Two suspiciously good-looking people.</p>
 
       <img src="us.jpg" alt="Our photo">
 
-      <button onclick="nextPage(6)">Continue</button>
+      <button onclick="nextPage(7)">Continue</button>
     </div>
   </div>
 
-  <div class="page" id="page6">
+  <div class="page" id="page7">
     <div class="card">
       <h1>🎁 Choose your reward</h1>
       <p>Pick one:</p>
       <button onclick="selectReward('Beach date 🌅')">Beach date 🌅</button>
       <button onclick="selectReward('Late night drive 🚗')">Late night drive 🚗</button>
-      <button onclick="selectReward('Mini golf ⛳')">Mini golf ⛳</button>
+      <button onclick="selectReward('Spa bath together 🛁')">Spa bath together 🛁</button>
       <button onclick="selectReward('Surprise date 🎉')">Surprise date 🎉</button>
     </div>
   </div>
 
-  <div class="page" id="page7">
+  <div class="page" id="page8">
     <div class="card">
       <h1>🎉 Date Confirmed ❤️</h1>
       <p id="rewardText">You picked a date.</p>
@@ -150,6 +173,8 @@
       <button onclick="finalMessage('ASAP')">✅ ASAP</button>
 
       <p id="finalText"></p>
+
+      <img src="us.jpg" alt="Our photo again">
     </div>
   </div>
 
@@ -161,10 +186,16 @@
       document.getElementById("page" + num).classList.add("active");
     }
 
+    function moveButton(button) {
+      let x = Math.random() * 300 - 150;
+      let y = Math.random() * 300 - 150;
+      button.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
     function selectReward(reward) {
       document.getElementById("rewardText").innerText =
         "You picked: " + reward + ". Good choice 😌";
-      nextPage(7);
+      nextPage(8);
       confetti();
     }
 
